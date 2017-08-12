@@ -9,12 +9,6 @@ RUN DEBIAN_FRONTEND=noninteractive \
 
 RUN git clone https://github.com/swiftdiaries/tensorflow-gpu-setup setupscripts/
 
-RUN cd setupscripts
-
-RUN chmod +x driverinstall.sh 
-
-RUN ./driverinstall.sh
-
 RUN pip install tfgpu.whl
 
 CMD exec /bin/bash -c "trap : TERM INT; sleep infinity & wait"
