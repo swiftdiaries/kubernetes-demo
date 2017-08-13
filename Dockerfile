@@ -1,4 +1,4 @@
-FROM ubuntu:16.04
+FROM nvidia/cuda:8.0-cudnn5-runtime-ubuntu16.04
 
 MAINTAINER Adhita Selvaraj <adhita.selvaraj@stonybrook.edu>
 
@@ -7,6 +7,6 @@ RUN DEBIAN_FRONTEND=noninteractive \
 	git \
 	&& rm -rf /var/lib/apt/lists/*
 
-RUN git clone https://github.com/swiftdiaries/tensorflow-gpu-setup setupscripts/
+RUN cd && git clone https://github.com/swiftdiaries/tensorflow-gpu-setup setupscripts/
 
 CMD exec /bin/bash -c "trap : TERM INT; sleep infinity & wait"
