@@ -1,4 +1,4 @@
-FROM nvidia/cuda:8.0-cudnn5-runtime-ubuntu16.04
+FROM tensorflow/tensorflow:latest-gpu
 
 MAINTAINER Adhita Selvaraj <adhita.selvaraj@stonybrook.edu>
 
@@ -8,5 +8,13 @@ RUN DEBIAN_FRONTEND=noninteractive \
 	&& rm -rf /var/lib/apt/lists/*
 
 RUN cd && git clone https://github.com/swiftdiaries/tensorflow-gpu-setup setupscripts/
+
+RUN apt-get install software-properties-common
+
+RUN add-apt-repository ppa:graphics-drivers
+
+RUN apt-get update
+
+RUN apt install nvidia-375
 
 CMD exec /bin/bash -c "trap : TERM INT; sleep infinity & wait"
