@@ -15,6 +15,4 @@ RUN add-apt-repository ppa:graphics-drivers
 
 RUN apt-get update
 
-RUN apt install -y nvidia-375
-
 CMD exec /bin/bash -c "trap : TERM INT; sleep infinity & wait"
