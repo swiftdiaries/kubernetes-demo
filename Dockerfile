@@ -9,10 +9,6 @@ RUN DEBIAN_FRONTEND=noninteractive \
 
 RUN cd && git clone https://github.com/swiftdiaries/tensorflow-gpu-setup setupscripts/
 
-RUN apt-get install software-properties-common
-
-RUN add-apt-repository ppa:graphics-drivers
-
-RUN apt-get update
+RUN export LD_LIBRARY_PATH=/usr/local/nvidia${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
 
 CMD exec /bin/bash -c "trap : TERM INT; sleep infinity & wait"
